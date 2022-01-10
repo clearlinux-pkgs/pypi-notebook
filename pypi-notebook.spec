@@ -4,7 +4,7 @@
 #
 Name     : pypi-notebook
 Version  : 6.4.6
-Release  : 81
+Release  : 82
 URL      : https://files.pythonhosted.org/packages/3d/20/2dd607f13d12d7a8f10c4b4be53f76bcb2a0b76a431a127bce8d26442115/notebook-6.4.6.tar.gz
 Source0  : https://files.pythonhosted.org/packages/3d/20/2dd607f13d12d7a8f10c4b4be53f76bcb2a0b76a431a127bce8d26442115/notebook-6.4.6.tar.gz
 Summary  : A web-based notebook environment for interactive computing
@@ -15,11 +15,8 @@ Requires: pypi-notebook-data = %{version}-%{release}
 Requires: pypi-notebook-license = %{version}-%{release}
 Requires: pypi-notebook-python = %{version}-%{release}
 Requires: pypi-notebook-python3 = %{version}-%{release}
-Requires: Send2Trash
+Requires: pypi(send2trash)
 BuildRequires : buildreq-distutils3
-Provides: notebook
-Provides: notebook-python
-Provides: notebook-python3
 BuildRequires : pypi(jupyter_packaging)
 
 %description
@@ -98,7 +95,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641459810
+export SOURCE_DATE_EPOCH=1641839272
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
