@@ -4,7 +4,7 @@
 #
 Name     : pypi-notebook
 Version  : 6.4.12
-Release  : 90
+Release  : 91
 URL      : https://files.pythonhosted.org/packages/d5/94/b15c0e44c37e49cf77866ff56cc7644632229b79c113a0eafd908fc7c7d7/notebook-6.4.12.tar.gz
 Source0  : https://files.pythonhosted.org/packages/d5/94/b15c0e44c37e49cf77866ff56cc7644632229b79c113a0eafd908fc7c7d7/notebook-6.4.12.tar.gz
 Summary  : A web-based notebook environment for interactive computing
@@ -98,7 +98,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656391066
+export SOURCE_DATE_EPOCH=1656391623
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
