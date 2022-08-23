@@ -4,7 +4,7 @@
 #
 Name     : pypi-notebook
 Version  : 6.4.12
-Release  : 94
+Release  : 95
 URL      : https://files.pythonhosted.org/packages/d5/94/b15c0e44c37e49cf77866ff56cc7644632229b79c113a0eafd908fc7c7d7/notebook-6.4.12.tar.gz
 Source0  : https://files.pythonhosted.org/packages/d5/94/b15c0e44c37e49cf77866ff56cc7644632229b79c113a0eafd908fc7c7d7/notebook-6.4.12.tar.gz
 Summary  : A web-based notebook environment for interactive computing
