@@ -4,7 +4,7 @@
 #
 Name     : pypi-notebook
 Version  : 6.5.1
-Release  : 96
+Release  : 97
 URL      : https://files.pythonhosted.org/packages/75/ea/d0928b1cb8733ff7ddad7a497efa33365d341a89987d2c5b3b56b0fa89b2/notebook-6.5.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/75/ea/d0928b1cb8733ff7ddad7a497efa33365d341a89987d2c5b3b56b0fa89b2/notebook-6.5.1.tar.gz
 Summary  : A web-based notebook environment for interactive computing
@@ -100,13 +100,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1665692742
+export SOURCE_DATE_EPOCH=1665765345
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
 export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
+pypi-dep-fix.py . nbclassic
 python3 setup.py build
 
 pushd ../buildavx2/
@@ -115,6 +116,7 @@ export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+pypi-dep-fix.py . nbclassic
 python3 setup.py build
 
 popd
@@ -124,6 +126,7 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-notebook
 cp %{_builddir}/notebook-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-notebook/16d10493731a4bebeb353de88f3427006e13da11 || :
 python3 -tt setup.py build  install --root=%{buildroot}
+pypi-dep-fix.py %{buildroot} nbclassic
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
