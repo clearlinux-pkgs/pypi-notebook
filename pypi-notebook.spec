@@ -4,7 +4,7 @@
 #
 Name     : pypi-notebook
 Version  : 6.5.1
-Release  : 97
+Release  : 98
 URL      : https://files.pythonhosted.org/packages/75/ea/d0928b1cb8733ff7ddad7a497efa33365d341a89987d2c5b3b56b0fa89b2/notebook-6.5.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/75/ea/d0928b1cb8733ff7ddad7a497efa33365d341a89987d2c5b3b56b0fa89b2/notebook-6.5.1.tar.gz
 Summary  : A web-based notebook environment for interactive computing
