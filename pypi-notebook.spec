@@ -4,21 +4,19 @@
 #
 Name     : pypi-notebook
 Version  : 6.5.2
-Release  : 100
+Release  : 102
 URL      : https://files.pythonhosted.org/packages/41/15/a4285abb25c87dec3002cd7eab88320ef21448effdd3714840695aafab12/notebook-6.5.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/41/15/a4285abb25c87dec3002cd7eab88320ef21448effdd3714840695aafab12/notebook-6.5.2.tar.gz
 Summary  : A web-based notebook environment for interactive computing
 Group    : Development/Tools
 License  : BSD-3-Clause-Clear
-Requires: pypi-notebook-bin = %{version}-%{release}
-Requires: pypi-notebook-data = %{version}-%{release}
-Requires: pypi-notebook-license = %{version}-%{release}
-Requires: pypi-notebook-python = %{version}-%{release}
-Requires: pypi-notebook-python3 = %{version}-%{release}
 Requires: pypi(send2trash)
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(jupyter_packaging)
 BuildRequires : pypi(nbclassic)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 # Jupyter Notebook
@@ -26,67 +24,6 @@ BuildRequires : pypi(nbclassic)
 [![Build Status](https://travis-ci.org/jupyter/notebook.svg?branch=master)](https://travis-ci.org/jupyter/notebook)
 [![Documentation Status](https://readthedocs.org/projects/jupyter-notebook/badge/?version=latest)](https://jupyter-notebook.readthedocs.io/en/stable/?badge=latest)
 [![codecov](https://codecov.io/gh/jupyter/notebook/branch/master/graph/badge.svg)](https://codecov.io/gh/jupyter/notebook)
-
-%package bin
-Summary: bin components for the pypi-notebook package.
-Group: Binaries
-Requires: pypi-notebook-data = %{version}-%{release}
-Requires: pypi-notebook-license = %{version}-%{release}
-
-%description bin
-bin components for the pypi-notebook package.
-
-
-%package data
-Summary: data components for the pypi-notebook package.
-Group: Data
-
-%description data
-data components for the pypi-notebook package.
-
-
-%package license
-Summary: license components for the pypi-notebook package.
-Group: Default
-
-%description license
-license components for the pypi-notebook package.
-
-
-%package python
-Summary: python components for the pypi-notebook package.
-Group: Default
-Requires: pypi-notebook-python3 = %{version}-%{release}
-
-%description python
-python components for the pypi-notebook package.
-
-
-%package python3
-Summary: python3 components for the pypi-notebook package.
-Group: Default
-Requires: python3-core
-Provides: pypi(notebook)
-Requires: pypi(argon2_cffi)
-Requires: pypi(ipykernel)
-Requires: pypi(ipython_genutils)
-Requires: pypi(jinja2)
-Requires: pypi(jupyter_client)
-Requires: pypi(jupyter_core)
-Requires: pypi(nbclassic)
-Requires: pypi(nbconvert)
-Requires: pypi(nbformat)
-Requires: pypi(nest_asyncio)
-Requires: pypi(prometheus_client)
-Requires: pypi(pyzmq)
-Requires: pypi(send2trash)
-Requires: pypi(terminado)
-Requires: pypi(tornado)
-Requires: pypi(traitlets)
-
-%description python3
-python3 components for the pypi-notebook package.
-
 
 %prep
 %setup -q -n notebook-6.5.2
@@ -100,12 +37,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667227621
+export SOURCE_DATE_EPOCH=1672293498
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 pypi-dep-fix.py . nbclassic
 python3 setup.py build
@@ -146,23 +83,3 @@ rm -f %{buildroot}*/usr/bin/jupyter-serverextension
 
 %files
 %defattr(-,root,root,-)
-
-%files bin
-%defattr(-,root,root,-)
-/usr/bin/jupyter-notebook
-
-%files data
-%defattr(-,root,root,-)
-/usr/share/applications/jupyter-notebook.desktop
-/usr/share/icons/hicolor/scalable/apps/notebook.svg
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/pypi-notebook/16d10493731a4bebeb353de88f3427006e13da11
-
-%files python
-%defattr(-,root,root,-)
-
-%files python3
-%defattr(-,root,root,-)
-/usr/lib/python3*/*
